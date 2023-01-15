@@ -1,4 +1,5 @@
 from requests  import *
+#程序获取网页模块
 def web(url,about_user):
     if url[0:11]!="http://www." or url[0:12]!="https://www.":
         url="https://www."+url

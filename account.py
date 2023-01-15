@@ -1,23 +1,16 @@
 from lib import *
+import os
+import ast
 def signin():
     account=open("account/user",mode="r")
     account_user=account.read()
-    a0=account_user
-    t0=type(account_user)
-    account_user=account_user.split(",")
-    a1=account_user
-    t1=type(account_user)
     account_user=account_user[0:len(account_user)-1]
-    a2=account_user
-    t2=type(account_user)
-    account_user=tuple(account_user)
-    account_user=account_user[0:len(account_user)]
-    a3=account_user
-    account_user=dict(account_user)
+    account_user="{%s}"%(account_user)
+    account_user=ast.literal_eval(account_user)
     user=input("输入你要登录的用户名：")
     if account_user[user] != 'None':
         sin=False
-        password=input("请输入密码")
+        password=input("请输入密码：")
         while sin==False:
             if sha(password)==account_user[user]:
                 sin=True
@@ -37,10 +30,14 @@ def new_account():
     if len(account.read())!=0:
         account.seek(len(account.read())-1)
     if newpassword=="":
-        newuser="['{}','None']".format(newname)
+        newuser='"{}","None"'.format(newname)
         account.write(account.read()+newuser+",")
     else:
-        newuser="['{}','{}']".format(newname,sha(newpassword))
+        newuser='"{}":"{}"'.format(newname,sha(newpassword))
         account.write(account.read()+newuser+",")
+    
+    os.mkdir("account/{}/".format(newname)) #创建账户信息目录
+    open("account/{}/ua".format(newname),mode="a") #创建ua信息存储文件
+    open("account/{}/cookies".format(newname),mode="a")
     print("新账户的名称为:{}\n新账户的密码为:{}".format(newname,newpassword))
     account.close()
