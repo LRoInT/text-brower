@@ -24,10 +24,11 @@ def signin():
     elif account_user[user]=='None':
         #没有密码，直接登录
         print("----------登录成功----------")
-    ua=open("account/{}/ua".format(user),mode="a")
-    cookies=open("account/{}/cookies".format(user),mode="a")
+    ua=open("account/{}/ua".format(user),mode="r").read()
+    cookies=open("account/{}/cookies".format(user),mode="r").read()
     about_user=[ua,cookies]
     account.close()
+    return about_user
 def new_account():
     account=open("account/user",mode="w+")
     newname=input("设置新账户名称:")
