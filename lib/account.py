@@ -1,4 +1,4 @@
-from lib import *
+from lib.lib import *
 import os
 import ast
 def signin():
