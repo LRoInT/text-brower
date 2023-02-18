@@ -1,5 +1,12 @@
 # text-brower
+
+## Version:0.1
+
 > 一个能用终端看网站的程序
+
+> 使用
+* 使用<code>url {url}</code>查看网页
+* 使用<code>exit</code>退出程序
 
 > 获取网页：使用requests的get函数获取。可以自动添加"https://"
 
